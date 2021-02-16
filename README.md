@@ -10,5 +10,5 @@ in Java and spring boot
 
 ## Contributing
 @Chandan 
-@Trent
+@trentsmith
 @MohRezaKhorasany
