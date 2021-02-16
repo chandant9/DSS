@@ -104,5 +104,4 @@ public class PatientInputManagement {
 		return matcher.matches();
 	}
 
-
 }
