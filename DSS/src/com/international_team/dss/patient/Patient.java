@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Patient {
 
+	String socialSecurityNumber;
 	String firstName;
 	String lastName;
 	String gender;
@@ -11,7 +12,10 @@ public class Patient {
 	Date dateOfBirth;
 	String phoneNumber;
 	String address;
-	String socialSecurityNumber;
+
+	public String getSocialSecurityNumber() {
+		return socialSecurityNumber;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -41,8 +45,5 @@ public class Patient {
 		return address;
 	}
 
-	public String getSocialSecurityNumber() {
-		return socialSecurityNumber;
-	}
-
 }
+
