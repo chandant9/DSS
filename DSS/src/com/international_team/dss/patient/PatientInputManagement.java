@@ -9,10 +9,10 @@ public class PatientInputManagement {
 
 	private Scanner scanner;
 	private static final String REGEX_EMAIL_VALIDATION = "^(.+)@(.+)$";
-	private final static String REGEX_SOCIAL_SECURITY_VALIDATION = "[0-9]+" + "^.{3}$";
-	private final static String REGEX_NAME_VALIDATION = ".*\\d.*" + "\\\\b\\\\w{2,20}\\\\b";
-	private final static String REGEX_DATE_VALIDATION = "\\d{4}-\\d{2}-\\d{2}";
-	private final static String REGEX_PHONE_NUMBER_VALIDATION = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+	private static final String REGEX_SOCIAL_SECURITY_VALIDATION = "[0-9]+" + "^.{3}$";
+	private static final String REGEX_NAME_VALIDATION = ".*\\d.*" + "\\\\b\\\\w{2,20}\\\\b";
+	private static final String REGEX_DATE_VALIDATION = "\\d{4}-\\d{2}-\\d{2}";
+	private static final String REGEX_PHONE_NUMBER_VALIDATION = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
 	private static Pattern pattern;
 	private static Matcher matcher;
 
