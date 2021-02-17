@@ -96,7 +96,7 @@ public class PatientInputManagement {
 	}
 
 	private boolean isValidGender(String gender) {
-		return gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("female");
+		return gender.equalsIgnoreCase(Gender.FEMALE.toString()) || gender.equalsIgnoreCase(Gender.MALE.toString());
 	}
 
 	private boolean isValidFormat(String userGiven, String regex) {
