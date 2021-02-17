@@ -8,16 +8,21 @@ import java.util.regex.Pattern;
 public class PatientInputManagement {
 
 	private Scanner scanner;
-	private static final String REGEX_EMAIL_VALIDATION = "^(.+)@(.+)$";
-	private static final String REGEX_SOCIAL_SECURITY_VALIDATION = "[0-9]+" + "^.{3}$";
-	private static final String REGEX_NAME_VALIDATION = ".*\\d.*" + "\\\\b\\\\w{2,20}\\\\b";
-	private static final String REGEX_DATE_VALIDATION = "\\d{4}-\\d{2}-\\d{2}";
-	private static final String REGEX_PHONE_NUMBER_VALIDATION = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+
+	private static final String REGEX_EMAIL_VALIDATION = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+	private static final String REGEX_SOCIAL_SECURITY_VALIDATION = "[0-9]+";
+	private static final String REGEX_NAME_VALIDATION = "\\D*";
+	private static final String REGEX_DATE_VALIDATION = "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)$" + "|^(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
+			+ "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$" + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
+	private final static String REGEX_PHONE_NUMBER_VALIDATION = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
 	private static Pattern pattern;
 	private static Matcher matcher;
 
 	public PatientInputManagement(Scanner scanner) {
 		this.scanner = scanner;
+	}
+
+	public void createPatientRecord() {
 		Patient patient = new Patient();
 		patient.socialSecurityNumber = getSocialSecurityNumber("Social security number: ");
 		patient.firstName = getFirstNameAndLastName("First name: ");
@@ -29,71 +34,65 @@ public class PatientInputManagement {
 		patient.address = getAddress("Address: ");
 	}
 
+	private String getSocialSecurityNumber(String msg) {
+		String socialSecurityNumber;
+		do {
+			System.out.println(msg);
+			socialSecurityNumber = scanner.next();
+		} while (!isValidFormat(socialSecurityNumber, REGEX_SOCIAL_SECURITY_VALIDATION));
+		return socialSecurityNumber;
+	}
+
 	private String getFirstNameAndLastName(String msg) {
-		System.out.println(msg);
 		String firstNameOrLastName;
 		do {
+			System.out.println(msg);
 			firstNameOrLastName = scanner.next();
-			scanner.nextLine();
 		} while (!isValidFormat(firstNameOrLastName, REGEX_NAME_VALIDATION));
 		return firstNameOrLastName;
 	}
 
 	private String getGender(String msg) {
-		System.out.println(msg);
 		String gender;
 		do {
+			System.out.println(msg);
 			gender = scanner.next();
-			scanner.nextLine();
-		} while (isValidGender(gender));
+		} while (!isValidGender(gender));
 		return gender;
 	}
 
 	private String getEmail(String msg) {
-		System.out.println(msg);
 		String email;
 		do {
+			System.out.println(msg);
 			email = scanner.next();
-			scanner.nextLine();
-		} while (isValidFormat(email, REGEX_EMAIL_VALIDATION));
+		} while (!isValidFormat(email, REGEX_EMAIL_VALIDATION));
 		return email;
 	}
 
 	private Date getDateOfBirth(String msg) {
-		System.out.println(msg);
 		String dateOfBirth;
 		do {
+			System.out.println(msg);
 			dateOfBirth = scanner.next();
-			scanner.nextLine();
-		} while (isValidFormat(dateOfBirth, REGEX_DATE_VALIDATION));
+		} while (!isValidFormat(dateOfBirth, REGEX_DATE_VALIDATION));
 		return Date.valueOf(dateOfBirth);
 	}
 
 	private String getPhoneNumber(String msg) {
-		System.out.println(msg);
 		String phoneNumber;
 		do {
+			System.out.println(msg);
 			phoneNumber = scanner.next();
 			scanner.nextLine();
-		} while (isValidFormat(phoneNumber, REGEX_PHONE_NUMBER_VALIDATION));
+		} while (!isValidFormat(phoneNumber, REGEX_PHONE_NUMBER_VALIDATION));
 		return phoneNumber;
 	}
 
 	private String getAddress(String msg) {
 		System.out.println(msg);
-		String address = scanner.next();
-		scanner.nextLine();
+		String address = scanner.nextLine();
 		return address;
-	}
-
-	private String getSocialSecurityNumber(String msg) {
-		System.out.println(msg);
-		String socialSecurityNumber;
-		do {
-			socialSecurityNumber = scanner.next();
-			scanner.nextLine();
-		} while (isValidFormat(socialSecurityNumber, REGEX_SOCIAL_SECURITY_VALIDATION));
-		return socialSecurityNumber;
 	}
 
 	private boolean isValidGender(String gender) {
